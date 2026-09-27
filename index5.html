@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>КП ЦентрПескоструя — шаблон</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0c0a; --bg2:#151310;
+  --ink:#f2ede3; --muted:#a2988a;
+  --or:#ff4d00; --sand:#d8b078;
+  --lD:rgba(242,237,227,.14); --lD2:rgba(242,237,227,.28);
+  --lL:rgba(13,12,10,.14); --lL2:rgba(13,12,10,.28);
+  --mutL:#6b6357;
+  --body:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#262320;padding:40px 0;font-family:var(--body);color:var(--bg)}
+
+/* ===== ЛИСТ: A4 КНИЖНЫЙ ===== */
+.page{width:210mm;height:297mm;margin:0 auto 34px;position:relative;overflow:hidden;
+  padding:14mm 14mm 7mm;display:flex;flex-direction:column;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.page.dark{background:var(--bg);color:var(--ink)}
+.page.light{background:var(--ink);color:var(--bg)}
+.lbl{font:700 9px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--or);
+  display:flex;align-items:center;gap:9px;margin-bottom:14px}
+.lbl::before{content:"";width:32px;height:1px;background:var(--or)}
+h1,h2{font:800 34px/1.08 var(--body);text-transform:uppercase;letter-spacing:-.01em}
+h1{white-space:nowrap}
+h2{font-size:24px}
+.mut{color:var(--muted)} .light .mut{color:var(--mutL)}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:8mm}
+.note{max-width:220px;font-size:10.5px;line-height:1.55;border-left:1px solid var(--lL2);padding-left:12px}
+.dark .note{border-left-color:var(--lD2)}
+.fill{outline:none;border-bottom:1px solid var(--or);min-height:1.2em;font-family:var(--mono);font-weight:700}
+.fill:empty::before{content:attr(data-ph);opacity:.4;font-weight:400}
+.flabel{font:700 8px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.light .flabel{color:var(--mutL)}
+.pf{margin-top:auto;display:flex;justify-content:space-between;
+  font:400 7.5px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;padding-top:5mm}
+.dark .pf{border-top:1px solid var(--lD);color:var(--muted)}
+.light .pf{border-top:1px solid var(--lL);color:var(--mutL)}
+
+/* ====== P1 ОБЛОЖКА ====== */
+.covTop{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.logo{display:flex;gap:12px;align-items:center}
+.mark{width:40px;height:40px;border:1px solid var(--lD2);display:grid;place-items:center;
+  font:800 14px var(--body);color:var(--or)}
+.ltxt{font:700 12px/1.25 var(--body)} .ltxt small{display:block;font:400 8px var(--mono);letter-spacing:.26em;color:var(--muted)}
+.who{width:260px} .who .fill{font-size:13px}
+.covMid{flex:1;display:flex;flex-direction:column;justify-content:center}
+.covSub{max-width:100%;margin-top:6mm;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.covBot{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--lD)}
+.ccell{padding:12px 12px 12px 0;border-right:1px solid var(--lD);border-bottom:1px solid var(--lD)}
+.ccell:nth-child(3n){border-right:none}
+.ccell:nth-child(n+4){border-bottom:none;padding-bottom:0}
+.ccell b{display:block;font:700 10px/1.45 var(--mono);overflow-wrap:break-word;min-height:1.45em}
+.ccell span{font:400 7.5px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* ====== P2 ПРОЦЕСС ====== */
+.steps{display:flex;flex-direction:column;flex:1}
+.step{display:grid;grid-template-columns:16mm 52mm 1fr;gap:6mm;align-items:start;
+  border-top:1px solid var(--lL2);padding:7mm 0}
+.step .sn{font:700 18px var(--mono);color:var(--or)}
+.step h3{font:800 12px/1.3 var(--body);text-transform:uppercase}
+.step p{font-size:10.5px;line-height:1.6;color:var(--mutL)}
+
+/* ====== P3 ФИНАЛ ====== */
+.stack{display:flex;flex-direction:column;gap:6mm;flex:1}
+.prow{display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+  border-top:1px solid var(--lL);padding:3.6mm 0;font-size:12px}
+.prow em{font:400 9px var(--mono);font-style:normal;letter-spacing:.14em;color:var(--mutL);text-transform:uppercase}
+.prow b{font:700 11px var(--mono);white-space:nowrap}
+.prow span{flex:1}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:5mm 7mm}
+.fields .full{grid-column:1/-1}
+.fields .fill{font-size:12px}
+.ctrow{display:flex;justify-content:space-between;border-top:1px solid var(--lL);padding:3mm 0;font-size:11px}
+.ctrow b{font:700 11px var(--mono)}
+.ctrow span{font:700 8px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mutL);padding-top:2px}
+
+/* ====== БЕНТО-СЕТКА ====== */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:4mm;flex:1;align-content:start}
+.bc{border:1px solid var(--lL2);padding:5mm;display:flex;flex-direction:column;gap:3mm}
+.bc h3{font:800 11px/1.35 var(--body);text-transform:uppercase}
+.bc p{font-size:10px;line-height:1.55}
+.bc.dark{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.bc.dark p{color:var(--muted)}
+.bc.or{background:var(--or);color:var(--bg);border-color:var(--or)}
+.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}.s6{grid-column:span 6}
+.blist{list-style:none;display:flex;flex-direction:column;gap:1.6mm}
+.blist li{font-size:9.5px;line-height:1.45;color:var(--muted);padding-left:10px;position:relative}
+.blist li::before{content:"—";position:absolute;left:0;color:var(--or)}
+.bgrid{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:2.5mm 7mm}
+.bgrid li{font-size:10px;line-height:1.5;padding-left:10px;position:relative}
+.bgrid li::before{content:"—";position:absolute;left:0;color:var(--or)}
+.bgrid b{font:700 10px var(--mono);color:var(--or)}
+
+/* ====== ПЕЧАТЬ / ПАНЕЛЬ ====== */
+.noprint{position:fixed;top:14px;right:14px;z-index:99;background:#111;color:#eee;padding:12px 14px;
+  font:12px var(--body);display:flex;gap:10px;align-items:center;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.noprint select,.noprint button{font:700 12px var(--mono);padding:6px 10px;background:var(--or);border:none;cursor:pointer}
+@page{size:A4 portrait;margin:0}
+@media print{body{background:#fff;padding:0}.noprint{display:none}.page{margin:0;box-shadow:none;page-break-after:always}}
+</style>
+</head>
+<body>
+
+<div class="noprint">
+  <select id="svcSel"></select>
+  <button onclick="window.print()">Печать / PDF</button>
+  <span style="opacity:.6">поля «кому/цена/дата» кликабельны</span>
+</div>
+
+<!-- ============ P1 ОБЛОЖКА ============ -->
+<section class="page dark">
+  <div class="covTop">
+    <div class="logo"><span class="mark">ЦП</span>
+      <span class="ltxt">ЦЕНТРПЕСКОСТРУЯ.РФ<small>commercial offer · пескоструй и покраска</small></span></div>
+    <div class="who"><span class="flabel">кому</span>
+      <div class="fill" contenteditable="true" data-ph="компания / ФИО заказчика"></div></div>
+  </div>
+  <div class="covMid">
+    <div class="lbl">( КП-<span data-f="num"></span> ) — <span data-f="name"></span></div>
+    <h1 data-f="name"></h1>
+    <p class="covSub" data-f="tagline"></p>
+  </div>
+  <div class="covBot">
+    <div class="ccell"><b>8 800 201-18-55</b><span>телефон</span></div>
+    <div class="ccell"><b>CenterPeskostruya.rf@<wbr>mail.ru</b><span>почта</span></div>
+    <div class="ccell"><b>СПб, Парнас, Заречная 23А</b><span>адрес</span></div>
+    <div class="ccell"><b>Пн–Сб 9:00–23:00</b><span>часы</span></div>
+    <div class="ccell"><b class="fill" contenteditable="true" data-ph="№"></b><span>номер КП</span></div>
+    <div class="ccell"><b class="fill" contenteditable="true" data-ph="дата" data-auto="date"></b><span>дата</span></div>
+  </div>
+  <div class="pf"><span>центрпескоструя.рф — коммерческое предложение</span><span data-f="name"></span><span>01</span></div>
+</section>
+
+<!-- ============ БЕНТО (только для «Пескоструй и покраска спецтехники») ============ -->
+<section class="page light" id="bento" style="display:none">
+  <div class="head">
+    <div><div class="lbl">( 02 ) — что мы делаем</div><h2>Пескоструй и покраска</h2></h2></div>
+    <p class="note mut">Полный цикл в одном месте: очистка, покраска, логистика и ремонт. Без лишних транспортировок между подрядчиками.</p>
+  </div>
+  <div class="bento">
+    <div class="bc dark s4">
+      <h3>Мы пескоструим всё, что требует восстановления геометрии и защиты от коррозии:</h3>
+      <ul class="blist">
+        <li>рамы тракторов МТЗ (80, 82, 82.1, 1221 и любых других моделей)</li>
+        <li>навесное и прицепное коммунальное оборудование</li>
+        <li>отвалы, ножи, щётки и гидроцилиндры снегоуборочной техники</li>
+        <li>стрелы, ковши, вилы и рычаги фронтальных погрузчиков</li>
+        <li>косилки, измельчители, роторы и сегментные ножи</li>
+        <li>экскаваторные лопаты, ямобуры, планировщики</li>
+        <li>рамы грузовых автомобилей, прицепов и полуприцепов</li>
+        <li>ходовые части, мосты, рессоры и крупногабаритные детали</li>
+        <li>гидравлические компоненты (корпуса редукторов, гидромоторы)</li>
+        <li>мелкие запчасти, пластины, втулки, кронштейны и металлоконструкции</li>
+      </ul>
+    </div>
+    <div class="bc or s2">
+      <h3>Практически без ограничений по весу и размеру</h3>
+      <p>Очистим и покрасим спецтехнику, грузовые диски, рамы, кузова самосвалов, прицепы, полуприцепы, тралы, бочки, ёмкости, цементовозы, металлоконструкции, катера, транспорт и спецтехнику.</p>
+    </div>
+    <div class="bc s6">
+      <h3>Если вам важна долговечность ЛКП — вы получите:</h3>
+      <ul class="bgrid">
+        <li>пескоструйная очистка до степени 2 по ГОСТ 9.402-80 — <b>Sa 2.5</b></li>
+        <li>окраска в камере с принудительной вентиляцией <b>6×24 м</b></li>
+        <li>эпоксидный грунт с <b>фосфатом цинка</b></li>
+        <li>промышленные <b>полиуретановые краски</b> для коммерческой техники</li>
+        <li>собственный склад ЛКМ и лаборатория колеровки: <b>любые цвета RAL</b> в наличии, под любые задачи и бюджет</li>
+        <li>гарантия <b>до 10 лет</b> — ваша техника защищена в любых условиях</li>
+      </ul>
+    </div>
+    <div class="bc dark s2"><h3>Все этапы в одном месте</h3><p>Исключает лишние транспортировки и снижает итоговую стоимость.</p></div>
+    <div class="bc dark s2"><h3>Стоимость фиксирована</h3><p>Фиксируется до начала работ и не меняется в процессе.</p></div>
+    <div class="bc or s2"><h3>Оплата по завершении</h3><p>Никакой предоплаты. Ноль рисков с вашей стороны.</p></div>
+    <div class="bc s3"><h3>Логистика</h3><p>Организуем перевозку, погрузку и разгрузку, в том числе негабаритных конструкций и техники.</p></div>
+    <div class="bc s3"><h3>Ремонт и изготовление</h3><p>При необходимости поможем с разборкой и сборкой, сваркой и ремонтом кузова, изготовим новые детали: крылья, кронштейны, лестницы, наращивание бортов и т. д.</p></div>
+  </div>
+  <div class="pf"><span>центрпескоструя.рф — коммерческое предложение</span><span data-f="name"></span><span>02</span></div>
+</section>
+
+<!-- ============ P2 ПРОЦЕСС ============ -->
+<section class="page light">
+  <div class="head">
+    <div><div class="lbl">( 01 ) — процесс</div><h2>Как мы работаем</h2></div>
+    <p class="note mut">Пять шагов, ноль сюрпризов. Цена из сметы не превращается в «по факту настроения прораба».</p>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="sn">01</span><h3>Выезд оценщика</h3><p>Бесплатно. Фиксируем объём, материал и нюансы на месте, объясняем технологию простым языком.</p></div>
+    <div class="step"><span class="sn">02</span><h3>Смета и договор</h3><p>Цена зафиксирована в договоре. Никаких «звёздочек» и допов постфактум.</p></div>
+    <div class="step"><span class="sn">03</span><h3>Подготовка</h3><p>Укрытие смежных поверхностей, пылеулавливание, ограждения, допуски на объекте.</p></div>
+    <div class="step"><span class="sn">04</span><h3>Обработка</h3><p>Абразив и режим подбираются под материал: от деликатного гранита до Sa 2½ по стали.</p></div>
+    <div class="step"><span class="sn">05</span><h3>Сдача</h3><p>Уборка, акт, фотоотчёт. Гарантия до 5 лет по договору. Оплата — по факту.</p></div>
+  </div>
+  <div class="pf"><span>центрпескоструя.рф — коммерческое предложение</span><span data-f="name"></span><span>02</span></div>
+</section>
+
+<!-- ============ P3 ФИНАЛ ============ -->
+<section class="page light">
+  <div class="head">
+    <div><div class="lbl">( 02 ) — цена и реквизиты</div><h2>Итого и контакты</h2></div>
+    <p class="note mut">Точная смета — после бесплатного выезда оценщика. Итог фиксируется в договоре и не ползёт вверх.</p>
+  </div>
+  <div class="stack">
+    <div id="priceRows"></div>
+    <div class="fields">
+      <div class="full"><span class="flabel">кому</span><div class="fill" contenteditable="true" data-ph="компания / ФИО заказчика"></div></div>
+      <div class="full"><span class="flabel">цена по смете</span><div class="fill" contenteditable="true" data-ph="000 000 ₽"></div></div>
+      <div><span class="flabel">дата КП</span><div class="fill" contenteditable="true" data-ph="дд.мм.гггг" data-auto="date"></div></div>
+      <div><span class="flabel">действительно до</span><div class="fill" contenteditable="true" data-ph="дд.мм.гггг" data-auto="valid"></div></div>
+    </div>
+    <div>
+      <div class="ctrow"><span>телефон</span><b>8 800 201-18-55</b></div>
+      <div class="ctrow"><span>почта</span><b>CenterPeskostruya.rf@mail.ru</b></div>
+      <div class="ctrow"><span>адрес</span><b>СПб, м. Парнас, ул. Заречная, 23А</b></div>
+    </div>
+  </div>
+  <div class="pf"><span>центрпескоструя.рф — коммерческое предложение</span><span data-f="name"></span><span>03</span></div>
+</section>
+
+<script>
+const SERVICES={
+ fasady:{num:'01',name:'Очистка фасадов',tagline:'Пескоструй с пылеподавлением, высотные работы и деликатные режимы по финишу. Здание возвращает лицо, а не маскировку из заплат.',prices:[['Пескоструйная очистка фасадов','м²','от 150 ₽'],['Очистка без пыли (городская среда)','м²','от 200 ₽'],['Покраска после очистки','м²','по смете']]},
+ beton:{num:'02',name:'Очистка бетона',tagline:'Снимаем цементное молоко, высолы и слабые слои. Бетон получает шероховатость, на которой покрытие держится годами.',prices:[['Очистка бетонных поверхностей','м²','от 200 ₽'],['Пескоструй без пыли','м²','от 200 ₽'],['Покраска после очистки','м²','по смете']]},
+ kirpich:{num:'03',name:'Очистка кирпича',tagline:'Деликатный режим абразива: высолы и раствор уходят из пор и швов, лицевая грань и кладка остаются нетронутыми.',prices:[['Очистка кирпича','м²','от 150 ₽'],['Очистка камня','м²','от 150 ₽'],['Гидрофобизация после очистки','м²','по смете']]},
+ metall:{num:'04',name:'Очистка металлоконструкций',tagline:'Абразивоструй до Sa 2–2½ по ISO 8501-1: ржавчина, окалина и старые покрытия сняты до живого металла.',prices:[['Очистка металлоконструкций','м²','от 350 ₽'],['Очистка от старой краски','м²','от 250 ₽'],['Покраска после очистки','м²','по смете']]},
+ pamyatniki:{num:'05',name:'Очистка памятников',tagline:'Мягкий бластинг по граниту и мрамору: копоть и биопоражения уходят, камень и гравировка не страдают.',prices:[['Очистка памятника (гранит, мрамор)','шт','по смете'],['Очистка камня','м²','от 150 ₽'],['Обновление надписей и гравировки','шт','по смете']]},
+ dnishche:{num:'06',name:'Очистка днища автомобилей',tagline:'Полная расчистка днища до живого металла: старый антикор, ржавчина и грязь сняты, скрытая коррозия проявлена.',prices:[['Днище автомобиля','авто','от 8 000 ₽'],['Прицепы','шт','от 8 000 ₽'],['Мотоциклы','шт','от 5 000 ₽']]},
+ diski:{num:'07',name:'Очистка дисков',tagline:'Окислы, старая краска и грязь сняты до голого металла без повреждения геометрии. Готовы под порошковую окраску.',prices:[['Автомобильные диски','шт','от 800 ₽'],['Комплект 4 шт','компл','от 3 000 ₽'],['Порошковая окраска после очистки','компл','по смете']]},
+ brus:{num:'08',name:'Очистка бруса',tagline:'Пескоструй снимает потемневший слой древесины без потери геометрии: синева, плесень и серость уходят, фактура возвращается.',prices:[['Шлифовка сруба пескоструем','м²','от 190 ₽'],['Очистка бруса','м²','от 190 ₽'],['Покраска / масло после очистки','м²','по смете']]},
+ dom:{num:'09',name:'Очистка деревянных домов',tagline:'Мягкий бластинг по бревну и брусу: биопоражения и потемневший слой сняты, геометрия сруба не тронута.',prices:[['Очистка деревянного дома','м²','от 190 ₽'],['Шлифовка сруба пескоструем','м²','от 190 ₽'],['Покраска / масло после очистки','м²','по смете']]},
+ mosty:{num:'10',name:'Очистка мостов',tagline:'Пескоструй до Sa 2½ и покраска пролётов по ночному графику движения. Промышленные объёмы, трафик не стоит.',prices:[['Мосты и путепроводы','м²','по смете'],['Очистка металлоконструкций','м²','от 350 ₽'],['Покраска после очистки','м²','по смете']]},
+ dorogi:{num:'11',name:'Очистка дорог',tagline:'Гидроструй высокого давления снимает старую разметку, резину и масляные отложения без повреждения полотна.',prices:[['Снятие разметки гидроструём','м²','по смете'],['Очистка от резины и масла','м²','по смете'],['Очистка искусственных сооружений','м²','от 350 ₽']]},
+ zapchasti:{num:'12',name:'Очистка запчастей',tagline:'Масло, окалина и ржавчина сняты до живого металла: деталь готова под сварку, покраску и честную дефектовку.',prices:[['Очистка запчастей','шт/м²','от 350 ₽'],['Очистка от старой краски','м²','от 250 ₽'],['Покраска после очистки','м²','по смете']]},
+ pozhar:{num:'13',name:'Очистка после пожара',tagline:'Пескоструй вынимает сажу и копоть из пор, швов и труднодоступных мест. Запах гари уходит вместе с источником.',prices:[['Очистка после пожара','м²','от 450 ₽'],['Очистка фасадов после пожара','м²','от 150 ₽'],['Очистка помещений (деликатно)','м²','по смете']]},
+ syda:{num:'14',name:'Очистка судов',tagline:'Расчистка корпуса в доке: обрастания, ржавчина и слои старой необрастающей краски сняты до живого металла.',prices:[['Суда, катера, лодки','м²','от 450 ₽'],['Очистка цистерн','м²','от 500 ₽'],['Покраска после очистки','м²','по смете']]},
+ yahty:{num:'15',name:'Очистка яхт',tagline:'Деликатный режим по гелькоуту: осмос и старая необрастающая сняты, гелькоут и ламинат не тронуты.',prices:[['Очистка яхты (гелькоут)','м²','от 450 ₽'],['Суда, катера, лодки','м²','от 450 ₽'],['Покраска после очистки','м²','по смете']]},
+ gruzoviki:{num:'16',name:'Очистка грузовиков',tagline:'Полная расчистка кабины, кузова и рамы до живого металла: старая краска, ржавчина и дорожная грязь сняты. Честная подготовка под покраску и антикор — без скрытых сюрпризов.',prices:[['Кабина и кузов (полная расчистка)','авто','от 15 000 ₽'],['Очистка от старой краски и ржавчины','м²','от 250 ₽'],['Покраска после очистки','авто','по смете']]},
+ specteh:{num:'17',name:'Очистка спецтехники',tagline:'Экскаваторы, погрузчики, краны и прочая спецтехника: окалина, ржавчина и старая краска сняты с рам, стрел и навесного оборудования. Подготовка под покраску и дефектовку.',prices:[['Единица спецтехники (рама, стрела, кузов)','ед','от 20 000 ₽'],['Очистка металлоконструкций','м²','от 350 ₽'],['Покраска после очистки','м²','по смете']]},
+ shtst:{num:'18',name:'Очистка штукатурных станций',tagline:'Штукатурные станции, миксеры и шланги: засохший раствор и накипь сняты с бункеров, рам и деталей. Оборудование возвращает ресурс без покупки нового.',prices:[['Штукатурная станция (полная очистка)','шт','от 15 000 ₽'],['Бункер, миксер, комплект деталей','шт','от 5 000 ₽'],['Профилактическая очистка','шт','по смете']]},
+ alumin:{num:'19',name:'Очистка алюминиевых конструкций и изделий из алюминия',tagline:'Деликатный режим по мягкому металлу: окислы, старая краска и загрязнения сняты без повреждения поверхности и геометрии. Конструкции и изделия готовы под покраску и анодирование.',prices:[['Очистка алюминиевых конструкций','м²','от 400 ₽'],['Изделия из алюминия (детали, корпуса)','шт','по смете'],['Подготовка под покраску / анодирование','м²','по смете']]},
+ gruzmash:{num:'20',name:'Очистка грузовых машин',tagline:'Работаем с автопарками: рамы, ходовая часть, кузова, цистерны и самосвальные кузова очищены до живого металла. Подготовка к осмотру, покраске и антикору по графику выпуска машин.',prices:[['Рама и ходовая часть','авто','от 9 000 ₽'],['Кузов, цистерна, самосвальный кузов','авто','от 12 000 ₽'],['Прицепы и полуприцепы','шт','от 8 000 ₽']]},
+ spekpokr:{num:'21',name:'Пескоструй и покраска спецтехники',bento:true,tagline:'Полный цикл в одном месте: очистка до Sa 2.5 по ГОСТ 9.402-80, окраска в камере 6×24 м, эпоксидный грунт и полиуретан по RAL. Гарантия до 10 лет.',prices:[['Пескоструйная очистка спецтехники','м²','от 350 ₽'],['Окраска: грунт + полиуретановая эмаль','м²','от 450 ₽'],['Разборка, сварка, изготовление деталей','работы','по смете']]}
+};
+const $=s=>document.querySelector(s);
+function fitH1(){
+  const h=document.querySelector('h1');
+  let size=34;
+  h.style.fontSize=size+'px';
+  while(h.scrollWidth>h.clientWidth&&size>18){size-=2;h.style.fontSize=size+'px';}
+}
+function render(id){const s=SERVICES[id];
+  document.querySelectorAll('[data-f]').forEach(el=>{if(s[el.dataset.f]!==undefined)el.textContent=s[el.dataset.f];});
+  $('#priceRows').innerHTML=s.prices.map(r=>`<div class="prow"><span>${r[0]}</span><em>${r[1]}</em><b>${r[2]}</b></div>`).join('');
+  $('#bento').style.display=s.bento?'':'none';
+  let n=0;
+  document.querySelectorAll('.page').forEach(p=>{
+    if(p.style.display==='none')return;
+    n++;
+    const t=p.querySelector('.pf span:last-child');
+    if(t)t.textContent=String(n).padStart(2,'0');
+  });
+  fitH1();
+}
+const sel=$('#svcSel');
+Object.entries(SERVICES).forEach(([k,v])=>{const o=document.createElement('option');o.value=k;o.textContent=`${v.num}. ${v.name}`;sel.appendChild(o);});
+sel.onchange=e=>render(sel.value);
+render('fasady');
+
+/* ===== АВТО-ДАТА: день создания КП ===== */
+const VALID_DAYS = 14;   // срок действия оффера в днях; 0 — не заполнять
+(function(){
+  const now = new Date();
+  const fmt = d => String(d.getDate()).padStart(2,'0') + '.' +
+               String(d.getMonth() + 1).padStart(2,'0') + '.' +
+               d.getFullYear();
+  document.querySelectorAll('[data-auto="date"]').forEach(el => el.textContent = fmt(now));
+  if (VALID_DAYS > 0){
+    const v = new Date(now);
+    v.setDate(v.getDate() + VALID_DAYS);
+    document.querySelectorAll('[data-auto="valid"]').forEach(el => el.textContent = fmt(v));
+  }
+})();
+</script>
+</body>
+</html>
